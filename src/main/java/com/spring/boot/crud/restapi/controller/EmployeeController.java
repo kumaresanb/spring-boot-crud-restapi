@@ -30,7 +30,12 @@ public class EmployeeController {
 
 	@GetMapping("/employees")
 	public List<Employee> getAllEmployees() {
-		return employeeRepository.findAll();
+		return (List<Employee>) employeeRepository.findAll();
+	}
+	
+	@GetMapping("employeeName")
+	public List<Employee> getOrderbyEmpName(){
+		return employeeRepository.orderByFirstName();
 	}
 
 	@GetMapping("/employees/{id}")
