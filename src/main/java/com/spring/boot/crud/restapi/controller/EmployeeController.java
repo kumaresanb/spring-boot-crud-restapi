@@ -33,9 +33,15 @@ public class EmployeeController {
 		return (List<Employee>) employeeRepository.findAll();
 	}
 	
-	@GetMapping("employeeName")
+	@GetMapping("/employeeName")
 	public List<Employee> getOrderbyEmpName(){
 		return employeeRepository.orderByFirstName();
+	}
+	
+	@GetMapping("/employee/{firstName}")
+	public ResponseEntity<List<Employee>> getEmployeeName(@PathVariable(value="firstName") String name){
+		List<Employee> employee=employeeRepository.findByFirstName(name);
+		return ResponseEntity.ok().body(employee);
 	}
 
 	@GetMapping("/employees/{id}")
